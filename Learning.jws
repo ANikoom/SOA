@@ -27,9 +27,6 @@
       <string v="oracle.jdeveloper.model.PathsConfiguration/ResourceBundlesContentSet"/>
    </list>
    <list n="listOfChildren">
-      <hash><url n="URL" path="../InputOutputAsAttachment/SwA-ProviderAndReceiverComposites/SwA-Provider/SwA-Provider.jpr"/></hash>
-      <hash><url n="URL" path="../InputOutputAsAttachment/SwA-ProviderAndReceiverComposites/SwA-Receiver/SwA-Receiver.jpr"/></hash>
       <hash><url n="URL" path="Sample/Sample.jpr"/></hash>
-      <hash><url n="URL" path="Swa_ReceiverProvider/Swa_ReceiverProvider.jpr"/></hash>
    </list>
 </jws:workspace>
