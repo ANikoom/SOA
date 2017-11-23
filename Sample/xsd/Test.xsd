@@ -1,0 +1,9 @@
+<?xml version= "1.0" encoding= "UTF-8" ?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            xmlns="http://platform.integration.oracle/blocks/adapter/fw/metadata/Test"
+            targetNamespace="http://platform.integration.oracle/blocks/adapter/fw/metadata/Test"
+            xmlns:imp1="http://xmlns.oracle.com/pcbpel/adapter/opaque/"
+            elementFormDefault="qualified" attributeFormDefault="unqualified">
+            <xsd:import namespace="http://xmlns.oracle.com/pcbpel/adapter/opaque/" schemaLocation="opaque.xsd"/>
+  
+</xsd:schema>

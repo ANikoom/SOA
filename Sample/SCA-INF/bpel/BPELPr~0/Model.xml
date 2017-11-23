@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<process name="BPELProcess1" targetNamespace="http://xmlns.oracle.com/Learning/Sample/BPELProcess1" xmlns="http://schemas.xmlsoap.org/ws/2003/03/business-process/" xmlns:client="http://xmlns.oracle.com/Learning/Sample/BPELProcess1" xmlns:ora="http://schemas.oracle.com/xpath/extension" xmlns:bpws="http://schemas.xmlsoap.org/ws/2003/03/business-process/" xmlns:ns1="http://xmlns.oracle.com/pcbpel/adapter/ums/Learning/Sample/Test" xmlns:bpelx="http://schemas.oracle.com/bpel/extension" xmlns:ns2="http://platform.integration.oracle/blocks/adapter/fw/metadata/Test" xmlns:xp20="http://www.oracle.com/XSL/Transform/java/oracle.tip.pc.services.functions.Xpath20" xmlns:bpel2="http://docs.oasis-open.org/wsbpel/2.0/process/executable" xmlns:oraext="http://www.oracle.com/XSL/Transform/java/oracle.tip.pc.services.functions.ExtFunc" xmlns:dvm="http://www.oracle.com/XSL/Transform/java/oracle.tip.dvm.LookupValue" xmlns:hwf="http://xmlns.oracle.com/bpel/workflow/xpath" xmlns:ids="http://xmlns.oracle.com/bpel/services/IdentityService/xpath" xmlns:bpm="http://xmlns.oracle.com/bpmn20/extensions" xmlns:xdk="http://schemas.oracle.com/bpel/extension/xpath/function/xdk" xmlns:xref="http://www.oracle.com/XSL/Transform/java/oracle.tip.xref.xpath.XRefXPathFunctions" xmlns:ldap="http://schemas.oracle.com/xpath/extension/ldap" xmlns:ns3="http://xmlns.oracle.com/pcbpel/adapter/opaque/" id="BpPrc0">
+
+  <!-- 
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+     ORCHESTRATION LOGIC                                               
+     Set of activities coordinating the flow of messages across the    
+     services integrated within this business process                  
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  -->
+  <partnerLinks>
+    <partnerLink name="Test" partnerLinkType="ns1:ReceiveNotification_plt" myRole="ReceiveNotification_role"/>
+  </partnerLinks>
+  <variables>
+    <variable name="Receive1_ReceiveNotification_InputVariable" messageType="ns1:ReceiveNotification_msg"/>
+    <variable name="Variable1" element="ns2:message"/>
+  </variables>
+  <sequence name="main" id="BpSeq0">
+    <receive name="Receive1" createInstance="yes" variable="Receive1_ReceiveNotification_InputVariable" partnerLink="Test" portType="ns1:ReceiveNotification_ptt" operation="ReceiveNotification" id="BpRcv0"/>
+    <assign name="Assign1" id="BpAss0">
+      <copy>
+        <from expression="ora:writeBinaryToFile('Receive1_ReceiveNotification_InputVariable','body','/ns2:message/ns2:attachment[1]', '/u01/app/oracle/userdir/NewAttachment.xml')"/>
+        <to variable="Variable1" query="/ns2:message/ns2:attachment"/>
+      </copy>
+    </assign>
+  </sequence>
+</process><!--
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  Oracle JDeveloper BPEL Designer 
+  
+  Created: Mon Jul 03 16:06:32 IST 2017
+  Author:  ANikoom
+  Type: BPEL 1.1 Process
+  Purpose: Empty BPEL Process
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+-->

@@ -1,0 +1,11 @@
+<?xml version= '1.0' encoding= 'UTF-8' ?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.soa-streams.org/SwA-Receiver"
+     targetNamespace="http://www.soa-streams.org/SwA-Receiver" elementFormDefault="qualified">
+    <xsd:element name="Employee" type="EmployeeType"/>
+    <xsd:complexType name="EmployeeType">
+        <xsd:sequence>
+            <xsd:element name="EmployeeId" type="xsd:string"/>
+            <xsd:element name="EmployeeFirstName" type="xsd:string" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+</xsd:schema>

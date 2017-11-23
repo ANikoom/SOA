@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions
+     name="SwAReceiverBPEL"
+     targetNamespace="http://xmlns.soa-streams.com/SwA_Receiver/SwAReceiverBPEL"
+     xmlns:ns1="http://www.soa-streams.org/SwA-Receiver"
+     xmlns:plnk="http://schemas.xmlsoap.org/ws/2003/05/partner-link/"
+     xmlns:client="http://xmlns.soa-streams.com/SwA_Receiver/SwAReceiverBPEL"
+     xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+     xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+     xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/"
+    >
+    <plnk:partnerLinkType name="SwAReceiverBPEL">
+        <plnk:role name="SwAReceiverBPELProvider">
+            <plnk:portType name="client:SwAReceiverBPEL"/>
+        </plnk:role>
+    </plnk:partnerLinkType>
+    <wsdl:types>
+        <xsd:schema targetNamespace="http://xmlns.soa-streams.com/SwA_Receiver/SwAReceiverBPEL">
+            <xsd:element name="attachmentElement" type="xsd:base64Binary"/>
+        </xsd:schema>
+        <schema xmlns="http://www.w3.org/2001/XMLSchema">
+            <import namespace="http://www.soa-streams.org/SwA-Receiver" schemaLocation="xsd/SwA-Receiver.xsd"/>
+        </schema>
+    </wsdl:types>
+    <wsdl:message name="SwAReceiverBPELRequestMessage">
+        <wsdl:part name="payload" element="ns1:Employee"/>
+        <wsdl:part name="attachmentPart" element="client:attachmentElement"/>
+    </wsdl:message>
+    <wsdl:message name="SwAReceiverBPELResponseMessage">
+        <wsdl:part name="payload" element="ns1:Employee"/>
+        <wsdl:part name="attachmentPart" element="client:attachmentElement"/>
+    </wsdl:message>
+    <wsdl:portType name="SwAReceiverBPEL">
+        <wsdl:operation name="process">
+            <wsdl:input message="client:SwAReceiverBPELRequestMessage"/>
+            <wsdl:output message="client:SwAReceiverBPELResponseMessage"/>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="SwAReceiverBPELBinding" type="client:SwAReceiverBPEL">
+        <soap:bindng style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="process">
+            <soap:operation soapAction="http://sap.com/xi/WebService/soap1.1"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <mime:multipartRelated>
+                    <mime:part>
+                        <soap:body use="literal"/>
+                    </mime:part>
+                    <mime:part>
+                        <mime:content part="attachmentPart" type="application/octet-stream"/>
+                    </mime:part>
+                </mime:multipartRelated>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+</wsdl:definitions>
